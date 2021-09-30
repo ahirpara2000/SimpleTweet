@@ -12,6 +12,8 @@ public class Tweet {
     public String body;
     public String createdAt;
     public User user;
+    public Media media;
+    public Media type;
     public long id;
 
     public static Tweet fromJSON(JSONObject jsonObject) throws JSONException {
@@ -20,6 +22,10 @@ public class Tweet {
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
         tweet.id = jsonObject.getLong("id");
+        try {
+            tweet.media = Media.fromJson(jsonObject.getJSONObject("entities"));
+        }
+        catch (JSONException e) { }
         return tweet;
     }
 
