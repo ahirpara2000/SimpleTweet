@@ -1,24 +1,25 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.google.android.exoplayer2.SimpleExoPlayer;
 
-import org.json.JSONException;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder> {
@@ -90,15 +91,19 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     .into(ivProfileImage);
 
             try {
-                Log.d("TweetsAdapter", "Type" + tweet.media.type);
                 if(tweet.media.type.equals("photo")) {
-//                    ivMedia.setVisibility(View.VISIBLE);
+                    ivMedia.setVisibility(View.VISIBLE);
                     Glide.with(context)
                             .load(tweet.media.url)
                             .into(ivMedia);
                 }
+                else {
+                    ivMedia.setVisibility(View.GONE);
+                }
             }
-            catch (NullPointerException e) { }
+            catch (NullPointerException e) {
+                ivMedia.setVisibility(View.GONE);
+            }
         }
     }
 

@@ -75,7 +75,7 @@ public class TimelineActivity extends AppCompatActivity {
         client.getNextPageOfTweets(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
-                Log.i(TAG, "onSuccess for lodMoreData" + json.toString());
+                Log.d(TAG, "onSuccess for lodMoreData" + json.toString());
                 // 2. Deserialize and construct new model objects from the API response
                 JSONArray jsonArray = json.jsonArray;
 
