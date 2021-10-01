@@ -45,6 +45,16 @@
         tools:layout_editor_absoluteY="11dp" />
 
     <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/tvScreenName"
+        android:fontFamily="@font/roboto"
+        android:text="· 2m"
+        android:textColor="@color/font_secondary" />
+
+    <TextView
         android:id="@+id/tvBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
