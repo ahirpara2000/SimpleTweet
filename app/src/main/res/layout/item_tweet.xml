@@ -35,95 +35,108 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rtstatus"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
-        android:drawablePadding="5dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/roboto"
-        android:maxLines="1"
-        android:text="TextView"
-        android:textColor="@color/font_primary"
-        android:textSize="14sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvScreenName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rtstatus"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/tvName"
-        android:fontFamily="@font/roboto"
-        android:text="aman1234"
-        android:textColor="@color/font_secondary"
-        android:textSize="14sp"
-        tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="11dp" />
-
-    <TextView
-        android:id="@+id/tvTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rtstatus"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/tvScreenName"
-        android:fontFamily="@font/roboto"
-        android:text="· 2m"
-        android:textColor="@color/font_secondary" />
-
-    <TextView
-        android:id="@+id/tvBody"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvScreenName"
-        android:layout_marginStart="15dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
-        android:autoLink="web|map|email"
-        android:text="This is my sample tweete."
-        android:textColor="@color/font_primary"
-        android:textSize="14sp" />
-
-    <ImageView
-        android:id="@+id/ivMedia"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvBody"
+        android:layout_below="@+id/rtstatus"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        android:visibility="gone"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvRetweets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvBody"
-        android:layout_alignStart="@+id/tvBody"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:drawableStart="@drawable/ic_retweete_icon"
-        android:drawablePadding="10dp"
-        android:text="20" />
+        <RelativeLayout
+            android:id="@+id/rlTweetHead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rtstatus"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/ivProfileImage">
 
-    <TextView
-        android:id="@+id/tvFavorites"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvBody"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="15dp"
-        android:layout_toEndOf="@+id/tvRetweets"
-        android:drawableStart="@drawable/favorites"
-        android:drawablePadding="10dp"
-        android:text="50" />
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto"
+                android:maxLines="1"
+                android:text="TextView"
+                android:textColor="@color/font_primary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvScreenName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/tvName"
+                android:fontFamily="@font/roboto"
+                android:text="aman1234"
+                android:textColor="@color/font_secondary"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="67dp"
+                tools:layout_editor_absoluteY="11dp" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/tvScreenName"
+                android:fontFamily="@font/roboto"
+                android:text="· 2m"
+                android:textColor="@color/font_secondary" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvBody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rlTweetHead"
+            android:layout_toEndOf="@+id/ivProfileImage"
+            android:autoLink="web|map|email"
+            android:text="This is my sample tweete."
+            android:textColor="@color/font_primary"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/ivMedia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvRetweets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:drawableStart="@drawable/ic_retweete_icon"
+                android:drawablePadding="10dp"
+                android:text="20" />
+
+            <TextView
+                android:id="@+id/tvFavorites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@+id/tvRetweets"
+                android:drawableStart="@drawable/favorites"
+                android:drawablePadding="10dp"
+                android:text="50" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>
