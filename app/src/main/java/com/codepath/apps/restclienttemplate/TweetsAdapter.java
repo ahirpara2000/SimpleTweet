@@ -98,6 +98,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvRetweets.setText(tweet.retweetCount);
             tvFavorites.setText(tweet.favoritesCount);
 
+            if(tweet.user.verified) {
+                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_twitter_verified_badge, 0);
+            }
             ivMedia.layout(0, 0, 0, 0);
 
             Glide.with(context)
