@@ -10,7 +10,7 @@
     <color name="yellow">#FFC107</color>
 
     <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#DDDDDD</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#F2F2F2</color>
     <color name="titleTextColor">#000000</color>
     <color name="bodyTextColor">#1E1E1E</color>
@@ -22,6 +22,7 @@
     <color name="medium_gray">#ffaab8c2</color>
     <color name="medium_gray_30">#4daab8c2</color>
     <color name="medium_gray_50">#80aab8c2</color>
+    <color name="dark_gray">#686868</color>
     <color name="light_gray">#AAB8C2</color>
     <color name="extra_light_gray">#E1E8ED</color>
     <color name="medium_red">#ffe0245e</color>

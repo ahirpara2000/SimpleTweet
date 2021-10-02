@@ -74,6 +74,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvTime;
         TextView tvRetweets;
         TextView tvFavorites;
+        TextView rtStatus;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -86,6 +87,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvTime = itemView.findViewById(R.id.tvTime);
             tvRetweets = itemView.findViewById(R.id.tvRetweets);
             tvFavorites = itemView.findViewById(R.id.tvFavorites);
+            rtStatus = itemView.findViewById(R.id.rtstatus);
         }
 
         public void bind(Tweet tweet) {
@@ -103,6 +105,16 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     .centerCrop()
                     .circleCrop()
                     .into(ivProfileImage);
+
+            Log.d("tweetAdapter", "Status: " + tweet.retweetStatus);
+
+            if(tweet.retweetStatus) {
+                rtStatus.setText(tweet.user.name + " Retweeted");
+                rtStatus.setVisibility(View.VISIBLE);
+            }
+            else {
+                rtStatus.setVisibility(View.GONE);
+            }
 
             try {
                 if(tweet.media.type.equals("photo")) {

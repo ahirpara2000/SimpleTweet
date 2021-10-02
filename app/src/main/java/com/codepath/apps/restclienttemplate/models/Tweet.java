@@ -22,6 +22,7 @@ public class Tweet {
     public long id;
     public String retweetCount;
     public String favoritesCount;
+    public boolean retweetStatus;
 
     public static Tweet fromJSON(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
@@ -31,6 +32,13 @@ public class Tweet {
         tweet.id = jsonObject.getLong("id");
         tweet.retweetCount = String.valueOf(jsonObject.getInt("retweet_count"));
         tweet.favoritesCount = String.valueOf(jsonObject.getInt("favorite_count"));
+
+        try {
+            jsonObject.getJSONObject("retweeted_status");
+            tweet.retweetStatus = true;
+        } catch (JSONException e) {
+            tweet.retweetStatus = false;
+        }
 
         try {
             tweet.media = Media.fromJson(jsonObject.getJSONObject("extended_entities"));
