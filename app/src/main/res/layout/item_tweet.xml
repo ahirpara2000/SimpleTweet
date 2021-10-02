@@ -66,23 +66,17 @@
         android:textColor="@color/font_primary"
         android:textSize="14sp" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvBody"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
-        app:cardCornerRadius="5dp">
-
         <ImageView
             android:id="@+id/ivMedia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tvBody"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/ivProfileImage"
             android:visibility="gone"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>

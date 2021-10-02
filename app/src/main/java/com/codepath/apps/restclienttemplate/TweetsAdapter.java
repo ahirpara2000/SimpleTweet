@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.google.android.exoplayer2.SimpleExoPlayer;
@@ -87,6 +89,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName.setText("@" + tweet.user.screenName);
             tvTime.setText("· " + tweet.createdAt);
 
+            ivMedia.layout(0, 0, 0, 0);
+
             Glide.with(context)
                     .load(tweet.user.profileImageUrl.replace("_normal", ""))
                     .centerCrop()
@@ -98,6 +102,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     ivMedia.setVisibility(View.VISIBLE);
                     Glide.with(context)
                             .load(tweet.media.url)
+                            .apply(RequestOptions.bitmapTransform(new RoundedCorners(20)))
+                            .override(Target.SIZE_ORIGINAL)
                             .into(ivMedia);
                 }
                 else {
