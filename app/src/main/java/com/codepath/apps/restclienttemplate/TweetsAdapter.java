@@ -118,44 +118,53 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
             try {
                 if(tweet.media.type.equals("photo")) {
-                    ivMedia.setVisibility(View.VISIBLE);
+
+                    setMediaVisibility(true, itemView);
+
                     Glide.with(context)
                             .load(tweet.media.url)
                             .apply(RequestOptions.bitmapTransform(new RoundedCorners(20)))
                             .override(Target.SIZE_ORIGINAL)
                             .into(ivMedia);
-
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) tvRetweets.getLayoutParams();
-                    params.addRule(RelativeLayout.BELOW, R.id.ivMedia);
-                    params.addRule(RelativeLayout.ALIGN_START, R.id.ivMedia);
-
-                    params = (RelativeLayout.LayoutParams) tvFavorites.getLayoutParams();
-                    params.addRule(RelativeLayout.BELOW, R.id.ivMedia);
-                    params.addRule(RelativeLayout.END_OF, R.id.tvRetweets);
                 }
                 else {
-                    ivMedia.setVisibility(View.GONE);
-
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) tvRetweets.getLayoutParams();
-                    params.addRule(RelativeLayout.BELOW, R.id.tvBody);
-                    params.addRule(RelativeLayout.ALIGN_START, R.id.tvBody);
-
-                    params = (RelativeLayout.LayoutParams) tvFavorites.getLayoutParams();
-                    params.addRule(RelativeLayout.BELOW, R.id.tvBody);
-                    params.addRule(RelativeLayout.END_OF, R.id.tvRetweets);
+                    setMediaVisibility(false, itemView);
                 }
             }
             catch (NullPointerException e) {
-                ivMedia.setVisibility(View.GONE);
-
-                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) tvRetweets.getLayoutParams();
-                params.addRule(RelativeLayout.BELOW, R.id.tvBody);
-                params.addRule(RelativeLayout.ALIGN_START, R.id.tvBody);
-
-                params = (RelativeLayout.LayoutParams) tvFavorites.getLayoutParams();
-                params.addRule(RelativeLayout.BELOW, R.id.tvBody);
-                params.addRule(RelativeLayout.END_OF, R.id.tvRetweets);
+                setMediaVisibility(false, itemView);
             }
+        }
+    }
+
+    public void setMediaVisibility(boolean visible, View itemView) {
+
+        ImageView ivMedia = itemView.findViewById(R.id.ivMedia);
+        TextView tvRetweets = itemView.findViewById(R.id.tvRetweets);
+        TextView tvFavorites = itemView.findViewById(R.id.tvFavorites);
+
+        if(visible) {
+            ivMedia.setVisibility(View.VISIBLE);
+
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) tvRetweets.getLayoutParams();
+            params.addRule(RelativeLayout.BELOW, R.id.ivMedia);
+            params.addRule(RelativeLayout.ALIGN_START, R.id.ivMedia);
+
+            params = (RelativeLayout.LayoutParams) tvFavorites.getLayoutParams();
+            params.addRule(RelativeLayout.BELOW, R.id.ivMedia);
+            params.addRule(RelativeLayout.END_OF, R.id.tvRetweets);
+        }
+
+        else {
+            ivMedia.setVisibility(View.GONE);
+
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) tvRetweets.getLayoutParams();
+            params.addRule(RelativeLayout.BELOW, R.id.tvBody);
+            params.addRule(RelativeLayout.ALIGN_START, R.id.tvBody);
+
+            params = (RelativeLayout.LayoutParams) tvFavorites.getLayoutParams();
+            params.addRule(RelativeLayout.BELOW, R.id.tvBody);
+            params.addRule(RelativeLayout.END_OF, R.id.tvRetweets);
         }
     }
 
