@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -71,6 +72,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvName;
         TextView tvScreenName;
         TextView tvTime;
+        TextView tvRetweets;
+        TextView tvFavorites;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -81,6 +84,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvName = itemView.findViewById(R.id.tvName);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvTime = itemView.findViewById(R.id.tvTime);
+            tvRetweets = itemView.findViewById(R.id.tvRetweets);
+            tvFavorites = itemView.findViewById(R.id.tvFavorites);
         }
 
         public void bind(Tweet tweet) {
@@ -88,6 +93,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvName.setText(tweet.user.name);
             tvScreenName.setText("@" + tweet.user.screenName);
             tvTime.setText("· " + tweet.createdAt);
+            tvRetweets.setText(tweet.retweetCount);
+            tvFavorites.setText(tweet.favoritesCount);
 
             ivMedia.layout(0, 0, 0, 0);
 
@@ -105,13 +112,37 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                             .apply(RequestOptions.bitmapTransform(new RoundedCorners(20)))
                             .override(Target.SIZE_ORIGINAL)
                             .into(ivMedia);
+
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) tvRetweets.getLayoutParams();
+                    params.addRule(RelativeLayout.BELOW, R.id.ivMedia);
+                    params.addRule(RelativeLayout.ALIGN_START, R.id.ivMedia);
+
+                    params = (RelativeLayout.LayoutParams) tvFavorites.getLayoutParams();
+                    params.addRule(RelativeLayout.BELOW, R.id.ivMedia);
+                    params.addRule(RelativeLayout.END_OF, R.id.tvRetweets);
                 }
                 else {
                     ivMedia.setVisibility(View.GONE);
+
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) tvRetweets.getLayoutParams();
+                    params.addRule(RelativeLayout.BELOW, R.id.tvBody);
+                    params.addRule(RelativeLayout.ALIGN_START, R.id.tvBody);
+
+                    params = (RelativeLayout.LayoutParams) tvFavorites.getLayoutParams();
+                    params.addRule(RelativeLayout.BELOW, R.id.tvBody);
+                    params.addRule(RelativeLayout.END_OF, R.id.tvRetweets);
                 }
             }
             catch (NullPointerException e) {
                 ivMedia.setVisibility(View.GONE);
+
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) tvRetweets.getLayoutParams();
+                params.addRule(RelativeLayout.BELOW, R.id.tvBody);
+                params.addRule(RelativeLayout.ALIGN_START, R.id.tvBody);
+
+                params = (RelativeLayout.LayoutParams) tvFavorites.getLayoutParams();
+                params.addRule(RelativeLayout.BELOW, R.id.tvBody);
+                params.addRule(RelativeLayout.END_OF, R.id.tvRetweets);
             }
         }
     }

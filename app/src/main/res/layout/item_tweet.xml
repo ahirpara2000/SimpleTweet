@@ -66,17 +66,39 @@
         android:textColor="@color/font_primary"
         android:textSize="14sp" />
 
-        <ImageView
-            android:id="@+id/ivMedia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvBody"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@+id/ivProfileImage"
-            android:visibility="gone"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+    <ImageView
+        android:id="@+id/ivMedia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvBody"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/ivProfileImage"
+        android:visibility="gone"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
+    <TextView
+        android:id="@+id/tvRetweets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvBody"
+        android:layout_alignStart="@+id/tvBody"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:drawableStart="@drawable/ic_retweete_icon"
+        android:drawablePadding="10dp"
+        android:text="20" />
 
+    <TextView
+        android:id="@+id/tvFavorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvBody"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/tvRetweets"
+        android:drawableStart="@drawable/favorites"
+        android:drawablePadding="10dp"
+        android:text="50" />
 
 </RelativeLayout>

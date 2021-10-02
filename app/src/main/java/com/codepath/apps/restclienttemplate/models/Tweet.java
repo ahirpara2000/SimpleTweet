@@ -20,6 +20,8 @@ public class Tweet {
     public User user;
     public Media media;
     public long id;
+    public String retweetCount;
+    public String favoritesCount;
 
     public static Tweet fromJSON(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
@@ -27,8 +29,8 @@ public class Tweet {
         tweet.createdAt = TwitterTimeDifferentitaion(jsonObject.getString("created_at"));
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
         tweet.id = jsonObject.getLong("id");
-
-        Log.d("Tweet", "Result: " + tweet.createdAt);
+        tweet.retweetCount = String.valueOf(jsonObject.getInt("retweet_count"));
+        tweet.favoritesCount = String.valueOf(jsonObject.getInt("favorite_count"));
 
         try {
             tweet.media = Media.fromJson(jsonObject.getJSONObject("extended_entities"));
