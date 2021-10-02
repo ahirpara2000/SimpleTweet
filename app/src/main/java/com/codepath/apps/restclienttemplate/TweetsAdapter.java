@@ -76,6 +76,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvFavorites;
         TextView rtStatus;
 
+        String profileImage;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -91,20 +93,31 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         }
 
         public void bind(Tweet tweet) {
+
+            if(!tweet.retweetStatus) {
+                tvName.setText(tweet.user.name);
+                tvScreenName.setText("@" + tweet.user.screenName);
+                profileImage = tweet.user.profileImageUrl.replace("_normal", "");
+
+                checkVerifiedUser(tweet.user.verified, itemView);
+            }
+            else {
+                tvName.setText(tweet.retweetUser.user.name);
+                tvScreenName.setText("@" + tweet.retweetUser.user.screenName);
+                profileImage = tweet.retweetUser.user.profileImageUrl.replace("_normal", "");
+
+                checkVerifiedUser(tweet.retweetUser.user.verified, itemView);
+            }
+
             tvBody.setText(tweet.body);
-            tvName.setText(tweet.user.name);
-            tvScreenName.setText("@" + tweet.user.screenName);
             tvTime.setText("· " + tweet.createdAt);
             tvRetweets.setText(tweet.retweetCount);
             tvFavorites.setText(tweet.favoritesCount);
 
-            if(tweet.user.verified) {
-                tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_twitter_verified_badge, 0);
-            }
             ivMedia.layout(0, 0, 0, 0);
 
             Glide.with(context)
-                    .load(tweet.user.profileImageUrl.replace("_normal", ""))
+                    .load(profileImage)
                     .centerCrop()
                     .circleCrop()
                     .into(ivProfileImage);
@@ -137,6 +150,13 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             catch (NullPointerException e) {
                 setMediaVisibility(false, itemView);
             }
+        }
+    }
+
+    private void checkVerifiedUser(Boolean verified, View itemView) {
+        TextView tvName = itemView.findViewById(R.id.tvName);
+        if(verified) {
+            tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_twitter_verified_badge, 0);
         }
     }
 

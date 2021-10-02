@@ -23,6 +23,7 @@ public class Tweet {
     public String retweetCount;
     public String favoritesCount;
     public boolean retweetStatus;
+    public RetweetUser retweetUser;
 
     public static Tweet fromJSON(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
@@ -36,6 +37,7 @@ public class Tweet {
         try {
             jsonObject.getJSONObject("retweeted_status");
             tweet.retweetStatus = true;
+            tweet.retweetUser = RetweetUser.fromJson(jsonObject.getJSONObject("retweeted_status"));
         } catch (JSONException e) {
             tweet.retweetStatus = false;
         }
