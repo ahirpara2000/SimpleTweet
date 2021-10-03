@@ -1,15 +1,12 @@
 package com.codepath.apps.restclienttemplate;
 
+import android.os.Bundle;
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -104,7 +101,6 @@ public class TimelineActivity extends AppCompatActivity {
                 JSONArray jsonArray = json.jsonArray;
                 try {
                     adapter.clear();
-                    Log.d(TAG, "Response: " + json.toString());
                     adapter.addAll(Tweet.fromJsonArray(jsonArray));
                     swipeContainer.setRefreshing(false);
                 } catch (JSONException e) {

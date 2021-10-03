@@ -1,17 +1,13 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
-import android.media.MediaPlayer;
-import android.net.Uri;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.MediaController;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,8 +16,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.codepath.apps.restclienttemplate.models.PictureSlideActivity;
 import com.codepath.apps.restclienttemplate.models.Tweet;
-import com.google.android.exoplayer2.SimpleExoPlayer;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -138,10 +136,19 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     ivMedia.setVisibility(View.VISIBLE);
 
                     Glide.with(context)
-                            .load(tweet.media.url)
+                            .load(tweet.media.url_list[0])
                             .apply(RequestOptions.bitmapTransform(new RoundedCorners(20)))
                             .override(Target.SIZE_ORIGINAL)
                             .into(ivMedia);
+
+                    ivMedia.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(context, PictureSlideActivity.class);
+                            intent.putExtra("url_list", tweet.media.url_list);
+                            context.startActivity(intent);
+                        }
+                    });
                 }
                 else {
                     ivMedia.setVisibility(View.GONE);
