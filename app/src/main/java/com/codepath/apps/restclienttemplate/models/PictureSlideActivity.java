@@ -21,6 +21,7 @@ public class PictureSlideActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         list = intent.getStringArrayExtra("url_list");
+        Log.d("Picture", "" + list);
         ViewPager viewPager = findViewById(R.id.view_pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(this, list);
         viewPager.setAdapter(adapter);

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -73,7 +74,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvRetweets;
         TextView tvFavorites;
         TextView rtStatus;
-
+        ImageView ivMedia2;
+        LinearLayout linearLayout;
         String profileImage;
 
         public ViewHolder(@NonNull View itemView) {
@@ -81,6 +83,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             ivMedia = itemView.findViewById(R.id.ivMedia);
+            ivMedia2 = itemView.findViewById(R.id.ivMedia2);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvName = itemView.findViewById(R.id.tvName);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
@@ -88,10 +91,10 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvRetweets = itemView.findViewById(R.id.tvRetweets);
             tvFavorites = itemView.findViewById(R.id.tvFavorites);
             rtStatus = itemView.findViewById(R.id.rtstatus);
+            linearLayout = itemView.findViewById(R.id.linear_image);
         }
 
         public void bind(Tweet tweet) {
-
             if(!tweet.retweetStatus) {
                 tvName.setText(tweet.user.name);
                 tvScreenName.setText("@" + tweet.user.screenName);
@@ -141,7 +144,25 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                             .override(Target.SIZE_ORIGINAL)
                             .into(ivMedia);
 
-                    ivMedia.setOnClickListener(new View.OnClickListener() {
+                    if(tweet.media.num_images > 1) {
+
+                        ivMedia.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                        linearLayout.setClipToOutline(true);
+                        ivMedia2.setVisibility(View.VISIBLE);
+
+                        Glide.with(context)
+                                .load(tweet.media.url_list[1])
+                                .apply(RequestOptions.bitmapTransform(new RoundedCorners(20)))
+                                .override(Target.SIZE_ORIGINAL)
+                                .into(ivMedia2);
+                    }
+
+                    else {
+                        ivMedia.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                        ivMedia2.setVisibility(View.GONE);
+                    }
+
+                    linearLayout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(context, PictureSlideActivity.class);
@@ -152,10 +173,12 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 }
                 else {
                     ivMedia.setVisibility(View.GONE);
+                    ivMedia2.setVisibility(View.GONE);
                 }
             }
             catch (NullPointerException e) {
                 ivMedia.setVisibility(View.GONE);
+                ivMedia2.setVisibility(View.GONE);
             }
         }
     }
