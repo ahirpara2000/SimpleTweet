@@ -25,7 +25,8 @@
             android:layout_marginBottom="5dp"
             android:gravity="start|top"
             android:hint="What's happning?"
-            android:minLines="5" />
+            android:minLines="5"
+            tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
 

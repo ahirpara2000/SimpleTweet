@@ -5,6 +5,7 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Parcel
 public class Tweet {
 
 
@@ -24,6 +26,8 @@ public class Tweet {
     public String favoritesCount;
     public boolean retweetStatus;
     public RetweetUser retweetUser;
+
+    public Tweet() { }
 
     public static Tweet fromJSON(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();

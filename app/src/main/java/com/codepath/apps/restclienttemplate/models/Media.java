@@ -3,15 +3,19 @@ package com.codepath.apps.restclienttemplate.models;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Parcel
 public class Media {
 
     public String type;
     public String[] url_list;
     public int num_images;
+
+    public Media() { }
 
     public static Media fromJson(JSONObject entities) throws JSONException {
         Media media = new Media();
