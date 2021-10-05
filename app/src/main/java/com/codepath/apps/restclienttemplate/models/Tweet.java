@@ -88,9 +88,6 @@ public class Tweet {
             num = seconds;
             result = seconds + "s";
         }
-        if (num > 1) {
-            result += "s";
-        }
 
         Log.d("Tweet", "Result: " + result);
         return (result);

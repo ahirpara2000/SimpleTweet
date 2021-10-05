@@ -188,6 +188,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         if(verified) {
             tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_twitter_verified_badge, 0);
         }
+        else {
+            tvName.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        }
     }
 
 }

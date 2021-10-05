@@ -51,7 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/rtstatus"
             android:layout_marginTop="0dp"
-            android:layout_toEndOf="@+id/ivProfileImage">
+            android:layout_toEndOf="@+id/ivProfileImage"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tvName"
@@ -73,7 +74,9 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="0dp"
                 android:layout_toEndOf="@+id/tvName"
+                android:ellipsize="end"
                 android:fontFamily="@font/roboto"
+                android:maxLines="1"
                 android:text="aman1234"
                 android:textColor="@color/font_secondary"
                 android:textSize="14sp"
@@ -87,7 +90,9 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="0dp"
                 android:layout_toEndOf="@+id/tvScreenName"
+                android:ellipsize="end"
                 android:fontFamily="@font/roboto"
+                android:maxLines="1"
                 android:text="· 2m"
                 android:textColor="@color/font_secondary" />
 
