@@ -73,7 +73,6 @@ public class ComposeDialog extends DialogFragment {
                     Toast.makeText(context, "Sorry, your tweet is too long", Toast.LENGTH_LONG).show();
                     return;
                 }
-                Toast.makeText(context, tweetContent, Toast.LENGTH_LONG).show();
 
                 client.publichTweet(tweetContent, new JsonHttpResponseHandler() {
                     @Override
