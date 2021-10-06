@@ -3,6 +3,9 @@
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimaryDark">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="colorControlNormal">@color/twitter_blue</item>
+        <item name="colorControlActivated">#2196F3</item>
+        <item name="colorControlHighlight">#00BCD4</item>
     </style>
 
     <!-- Application theme. -->
