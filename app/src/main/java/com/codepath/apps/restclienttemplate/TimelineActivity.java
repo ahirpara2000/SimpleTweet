@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,7 +24,7 @@ import java.util.List;
 
 import okhttp3.Headers;
 
-public class TimelineActivity extends AppCompatActivity {
+public class TimelineActivity extends AppCompatActivity implements ComposeDialog.OnTweetResponse {
 
     public static final String TAG = "TimelineActivity";
 
@@ -79,8 +77,8 @@ public class TimelineActivity extends AppCompatActivity {
         compose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TimelineActivity.this, ComposeActivity.class);
-                startActivityForResult(intent, REQUEST_CODE);
+                ComposeDialog dialog = new ComposeDialog(TimelineActivity.this);
+                dialog.show(getSupportFragmentManager(), "ComposeDialog");
             }
 
         });
@@ -89,17 +87,10 @@ public class TimelineActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-            // Get data from intent
-            Tweet tweet = Parcels.unwrap(data.getParcelableExtra("tweet"));
-            // Modify data source
-            tweets.add(0, tweet);
-            // Update recycler view
-            adapter.notifyItemInserted(0);
-            rvTweets.smoothScrollToPosition(0);
-        }
-        super.onActivityResult(requestCode, resultCode, data);
+    public void sendResponse(Tweet tweet) {
+        tweets.add(0, tweet);
+        adapter.notifyItemInserted(0);
+        rvTweets.smoothScrollToPosition(0);
     }
 
     private void loadMoreData() {

@@ -14,9 +14,6 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ComposeActivity"
-            android:exported="true" />
-        <activity
             android:name=".models.PictureSlideActivity"
             android:theme="@style/AppTheme" />
         <activity
