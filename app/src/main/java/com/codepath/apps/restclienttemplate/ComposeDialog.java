@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -53,6 +55,9 @@ public class ComposeDialog extends DialogFragment {
         etCompose = view.findViewById(R.id.etCompose);
 
         client = TwitterApp.getRestClient(context);
+
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
